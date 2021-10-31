@@ -1,37 +1,6 @@
 const { ObjectId } = require('mongodb');
 const taskModel = require('../models/taskModel');
-
-const isValidId = (collaboratorId, statusId) => {
-    if (!ObjectId.isValid(collaboratorId)) {
-      return false;
-    }
-
-    if (!ObjectId.isValid(statusId)) {
-      return false;
-    }
-
-    return true;
-};
-
-const isValidTask = (title, description) => {
-  if (!title || typeof title !== 'string') {
-    return false;
-  }
-
-  if (!description || typeof description !== 'string') {
-    return false;
-  }
-
-  return true;
-};
-
-const isValidDate = (deadlineDate) => {
-  if (!deadlineDate || typeof deadlineDate !== 'string') {
-    return false;
-  }
-
-  return true;
-};
+const { validTask } = require('../helper/validCollaborator');
 
 const create = async ({ 
   collaboratorId, 
@@ -39,8 +8,8 @@ const create = async ({
   title, 
   description,  
   deadlineDate }) => {
-  if (!isValidId(collaboratorId, statusId) 
-  || !isValidTask(title, description) || !isValidDate(deadlineDate)) {
+  if (!validTask.isValidId(collaboratorId, statusId) 
+  || !validTask.isValidTask(title, description) || !validTask.isValidDate(deadlineDate)) {
     return false;
   }
   const task = await taskModel.create({ 

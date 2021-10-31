@@ -9,7 +9,7 @@ const create = async ({
     title, 
     description,  
     deadlineDate }) => {
-  const db = await connectMongo.connect();
+  const db = await connectMongo.getDb();
   
   const task = await db.collection('tasks').insertOne({ 
     collaboratorId: ObjectId(collaboratorId), 
@@ -25,7 +25,7 @@ const create = async ({
 
 // READ MANY 
 const getAll = async () => {
-  const db = await connectMongo.connect();
+  const db = await connectMongo.getDb();
   const tasks = await db.collection('tasks').aggregate([{ 
     $lookup: { 
       from: 'status', 
@@ -52,7 +52,7 @@ const update = async ({
     title, 
     description,  
     deadlineDate }) => {
-  const db = await connectMongo.connect();
+  const db = await connectMongo.getDb();
 
   const task = await db.collection('tasks')
   .updateOne({ _id: ObjectId(id) }, 
@@ -69,7 +69,7 @@ const update = async ({
 
 // DELETE ONE 
 const deleteOne = async ({ id }) => {
-const db = await connectMongo.connect();
+const db = await connectMongo.getDb();
 
 const task = await db.collection('tasks').deleteOne({ _id: ObjectId(id) });
 

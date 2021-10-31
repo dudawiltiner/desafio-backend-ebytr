@@ -24,7 +24,6 @@ const mongo = () => MongoClient
 
 const connect = async () => {
   schema = await mongo();
-  return schema;
 };
 
 const getDb = () => schema;
