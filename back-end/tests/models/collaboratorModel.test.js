@@ -13,6 +13,7 @@ const { MongoMemoryServer } = require('mongodb-memory-server');
 // Importar o banco que vai fazer a conexão para poder fazer o 'double' com o sinon
 const connectMongo = require('../../models/connection');
 const collaboratorModel = require('../../models/collaboratorModel');
+const { mockMongo } = require('../../helperMockMongo');
 
 const { DB_NAME } = process.env;
 
@@ -26,8 +27,12 @@ describe('Encontra um usuário já cadastrado', function () {
 
   /* Usa-se o banco montado pela lib `mongo-memory-server` - plataforma trybe */
   before(async function () {
-    const DBServer = new MongoMemoryServer();
-    const URLMock = await DBServer.getUri();
+    connectionMock = await mockMongo({ 
+      sinon, 
+      MongoMemoryServer, 
+      MongoClient, 
+      DB_NAME, 
+      connectMongo }); 
 
     const newCollaborator = {
       collaboratorEmail: 'nome@nome.com',
@@ -35,13 +40,6 @@ describe('Encontra um usuário já cadastrado', function () {
       collaboratorName: 'Nome completo do colaborador',
       createdDate: '21/9/2021',
     };
-
-    connectionMock = await MongoClient
-      .connect(URLMock, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      })
-      .then((conn) => conn.db(DB_NAME));
 
     sinon.stub(connectMongo, 'connect').resolves(connectionMock);
     

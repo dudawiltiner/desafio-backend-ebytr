@@ -18,6 +18,7 @@ const { MongoMemoryServer } = require('mongodb-memory-server');
 // Importar o banco que vai fazer a conexão para poder fazer o 'double' com o sinon
 const connectMongo = require('../../models/connection');
 const statusModel = require('../../models/statusModel');
+const { mockMongo } = require('../../helperMockMongo');
 
 const { DB_NAME } = process.env;
 
@@ -33,18 +34,13 @@ describe('Encontra um status já cadastrado', function () {
 
   /* Usa-se o banco montado pela lib `mongo-memory-server` - plataforma trybe */
   before(async function () {
-    const DBServer = new MongoMemoryServer();
-    const URLMock = await DBServer.getUri();
-
-    connectionMock = await MongoClient
-      .connect(URLMock, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      })
-      .then((conn) => conn.db(DB_NAME));
-
-    sinon.stub(connectMongo, 'connect').resolves(connectionMock);
-    
+    connectionMock = await mockMongo({ 
+      sinon, 
+      MongoMemoryServer, 
+      MongoClient, 
+      DB_NAME, 
+      connectMongo }); 
+      
     const statusMock = await connectionMock
                                      .collection('status')
                                      .insertMany(payloadStatus);

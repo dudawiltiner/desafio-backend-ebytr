@@ -135,7 +135,7 @@ describe('Faz o CRUD (Criação, Leitura, Atualização e Exclusão) de uma tare
   });
 
   describe('quando deletada com sucesso', function () {
-    it('retorna um objeto', async function () {
+    it('deve retornar um objeto', async function () {
       const response = await taskModel.deleteOne(payloadTask.id);
 
       expect(response).to.be.a('object');
