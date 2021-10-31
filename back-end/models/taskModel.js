@@ -12,8 +12,8 @@ const create = async ({
   const db = await connectMongo.connect();
   
   const task = await db.collection('tasks').insertOne({ 
-    collaboratorId, 
-    statusId, 
+    collaboratorId: ObjectId(collaboratorId), 
+    statusId: ObjectId(statusId), 
     title, 
     description, 
     createdDate: dateNow(),
@@ -57,8 +57,8 @@ const update = async ({
   const task = await db.collection('tasks')
   .updateOne({ _id: ObjectId(id) }, 
   { $set: { 
-    collaboratorId, 
-    statusId, 
+    collaboratorId: ObjectId(collaboratorId), 
+    statusId: ObjectId(statusId), 
     title, 
     description, 
     updateDate: dateNow(),
