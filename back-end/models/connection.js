@@ -10,6 +10,10 @@ const OPTIONS = {
 
 let schema = null;
 
+/**
+ * VAI ABRIR UMA CONEXÃO COM O BANCO DE DADOS
+ * @returns SCHEMA gerado após a conexão
+ */
 const mongo = () => MongoClient
     .connect(DB_URL, OPTIONS)
     .then((conn) => conn.db(DB_NAME))
@@ -26,6 +30,11 @@ const connect = async () => {
   schema = await mongo();
 };
 
+/**
+ * ESSA FUNÇÃO SERVE PARA NÃO ABRIR UMA NOVA CONEXÃO
+ * A CADA REQUISAÇÃO DAS ROTAS --> USADA NOS MODELS
+ * @returns o SCHEMA salvo da conexão com o banco de dados
+ */
 const getDb = () => schema;
 
 module.exports = { connect, getDb };

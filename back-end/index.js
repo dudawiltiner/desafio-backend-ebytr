@@ -13,6 +13,11 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 3001;
 
+// CRUD DAS TAREFAS
+const taskRouter = require('./routers/taskRouter');
+
+app.use('/task', taskRouter);
+
 // ATUTENTICA O COLABORADOR
 const collaboratorRouter = require('./routers/collaboratorRouter');
 
@@ -22,10 +27,5 @@ app.use('/collaborator', collaboratorRouter);
 const statusRouter = require('./routers/statusRouter');
 
 app.use('/status', statusRouter);
-
-// CRUD DAS TAREFAS
-const taskRouter = require('./routers/taskRouter');
-
-app.use('/task', taskRouter);
 
 app.listen(PORT, () => { console.log(`Api rodando na porta ${PORT}`); });

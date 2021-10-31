@@ -4,6 +4,15 @@ const collaboratorModel = require('../models/collaboratorModel');
 
 const secretKey = process.env.SECRET_KEY;
 
+/**
+ * CONFIGURAÇÃO DO MIDDLEWARE DE VALIDAÇÃO 
+ * DO TOKEN PARA A AUTORIZAÇÃO 
+ * @param {*} req // recebe a requisição
+ * @param {*} res // resebe a resposta
+ * @param {*} next
+ * @returns um status + json (message ou array)
+ */
+
 const isValid = async (req, res, next) => {
   const token = req.headers.authorization;
   

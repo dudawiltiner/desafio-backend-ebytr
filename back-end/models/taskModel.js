@@ -2,6 +2,13 @@ const { ObjectId } = require('mongodb');
 const { dateNow } = require('../helper/helperDate');
 const connectMongo = require('./connection');
 
+/**
+ * CRIA UMA NOVA TAREFA NO BANCO DE DADOS
+ * @param {*} param0 um parâmetro OBJETO que possue como chaves: id do colaborador, o id do status
+ * , títula da tarefa, descrição
+ * @returns um OBJETO da consulta ao banco de dados na coleção "tasks" 
+ */
+
 // CREATE ONE 
 const create = async ({ 
     collaboratorId, 
@@ -23,6 +30,11 @@ const create = async ({
   return task;
 };
 
+/**
+ * ECONTRA TODAS AS TAREFAS REGISTRADAS
+ * @returns um ARRAY da consulta ao banco de dados na coleção "tasks" 
+ */
+
 // READ MANY 
 const getAll = async () => {
   const db = await connectMongo.getDb();
@@ -43,6 +55,13 @@ const getAll = async () => {
   
   return tasks;
 };
+
+/**
+ * ATUALIZA UMA TAREFA NO BANCO DE DADOS
+ * @param {*} param0 um parâmetro OBJETO que possue como chaves: id da tarefa, podendo conter o id do colaborador, o id do status
+ * , títula da tarefa, descrição
+ * @returns um OBJETO da consulta ao banco de dados na coleção "tasks" 
+ */
 
 // UPDATE ONE 
 const update = async ({ 
@@ -66,6 +85,12 @@ const update = async ({
 
   return task;
 };
+
+/**
+ * DELETA UMA TAREFA NO BANCO DE DADOS
+ * @param {*} param0 um parâmetro OBJETO que possue como chaves: id da tarefa
+ * @returns um OBJETO da consulta ao banco de dados na coleção "tasks" 
+ */
 
 // DELETE ONE 
 const deleteOne = async ({ id }) => {

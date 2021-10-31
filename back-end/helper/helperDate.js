@@ -1,3 +1,8 @@
+/**
+ * GERA UMA DATA NO FORMATO DD/MM/YYYY
+ * @returns uma STRING de data
+ */
+
 const dateNow = () => {
   const data = new Date();
       const dia = data.getDate().toString().padStart(2, '0');

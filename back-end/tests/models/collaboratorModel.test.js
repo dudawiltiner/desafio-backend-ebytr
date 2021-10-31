@@ -32,9 +32,8 @@ describe('MODEL: Encontra um usuário já cadastrado', function () {
       createdDate: '21/9/2021',
     };
 
-    const collaboratorMock = await connectionMock
-                                    .collection('collaborators')
-                                    .insertOne(newCollaborator);
+    const collaboratorMock = await connectionMock.collection('collaborators')
+    .insertOne(newCollaborator);
     
     payloadCollaboratorId = { 
       id: collaboratorMock.insertedId.toString(),

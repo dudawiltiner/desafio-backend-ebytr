@@ -31,9 +31,8 @@ describe('MODEL: Encontra um status já cadastrado', function () {
   before(async function () {
     connectionMock = await mockMongo(connectMongo);  
 
-    const statusMock = await connectionMock
-                                     .collection('status')
-                                     .insertMany(payloadStatus);
+    const statusMock = await connectionMock.collection('status')
+    .insertMany(payloadStatus);
   
     payloadStatusId = { 
       id: statusMock.insertedIds[0].toString(),

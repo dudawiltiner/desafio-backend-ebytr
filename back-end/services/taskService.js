@@ -1,6 +1,13 @@
 const { ObjectId } = require('mongodb');
 const taskModel = require('../models/taskModel');
-const { validTask } = require('../helper/validCollaborator');
+const { isValidDate, isValidTask, isValidId } = require('../helper/validCollaborator');
+
+/**
+ * CRIA UMA NOVA TAREFA PELO MODEL
+ * @param {*} param0 um parâmetro OBJETO que possue como chaves: id do colaborador, o id do status
+ * , títula da tarefa, descrição
+ * @returns um OBJETO do model Task ou BOOLEAN false 
+ */
 
 const create = async ({ 
   collaboratorId, 
@@ -8,8 +15,8 @@ const create = async ({
   title, 
   description,  
   deadlineDate }) => {
-  if (!validTask.isValidId(collaboratorId, statusId) 
-  || !validTask.isValidTask(title, description) || !validTask.isValidDate(deadlineDate)) {
+  if (!isValidId(collaboratorId, statusId) 
+  || !isValidTask(title, description) || !isValidDate(deadlineDate)) {
     return false;
   }
   const task = await taskModel.create({ 
@@ -21,6 +28,13 @@ const create = async ({
 
   return task;
 };
+
+/**
+ * ATUALIZA UMA TAREFA PELO MODEL
+ * @param {*} param0 um parâmetro OBJETO que possue como chaves: id da tarefa, podendo conter o id do colaborador, o id do status
+ * , títula da tarefa, descrição
+ * @returns um OBJETO do model Task ou BOOLEAN false 
+ */
 
 const update = async ({ 
   id,
@@ -43,6 +57,12 @@ const update = async ({
 
   return task;
   };
+
+/**
+ * DELETA UMA TAREFA PELO MODEL
+ * @param {*} param0 um parâmetro OBJETO que possue como chaves: id da tarefa
+ * @returns um OBJETO do model Task ou BOOLEAN false  
+ */
 
 const deleteOne = async (id) => {
   console.log(id);

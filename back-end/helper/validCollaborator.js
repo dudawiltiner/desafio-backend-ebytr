@@ -1,6 +1,12 @@
+/**
+ * VALIDA O EMAIL DO COLOBORADOR
+ * @param {*} collaboratorEmail uma STRING -> email do colaborador
+ * @returns um BOOLEAN true ou false
+ */
+
 const isValidEmail = (collaboratorEmail) => {
   const re = /\S+@\S+\.\S+/;
-  // console.log(re.test(collaboratorEmail));
+  
   if (!collaboratorEmail || typeof collaboratorEmail !== 'string') {
     return false;
   }
@@ -12,12 +18,18 @@ const isValidEmail = (collaboratorEmail) => {
   return true;
 };
 
-const isValidPassword = (password) => {
-  if (!password || typeof password !== 'string') {
+/**
+ * VALIDA A SENHA DO COLOBORADOR
+ * @param {*} collaboratorPassword uma STRING -> senha do colaborador
+ * @returns um BOOLEAN true ou false
+ */
+
+const isValidPassword = (collaboratorPassword) => {
+  if (!collaboratorPassword || typeof collaboratorPassword !== 'string') {
     return false;
   }
 
-  if (password.length < 6) {
+  if (collaboratorPassword.length < 6) {
     return false;
   }
 

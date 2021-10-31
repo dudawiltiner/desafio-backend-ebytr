@@ -2,6 +2,13 @@ const status = require('http-status');
 const taskService = require('../services/taskService');
 const taskModel = require('../models/taskModel');
 
+/**
+ * CONFIGURAÇÃO DOS MIDDLEWARES PARA O CRUD DAS TAREFAS
+ * @param {*} req // recebe a requisição
+ * @param {*} res // resebe a resposta
+ * @returns um status + json (message ou array)
+ */
+
 const create = async (req, res) => {
   try {
     const { collaboratorId, statusId, title, description, deadlineDate } = req.body;

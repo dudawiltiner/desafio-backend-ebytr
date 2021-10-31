@@ -5,6 +5,12 @@ const { MongoMemoryServer } = require('mongodb-memory-server');
 
 const { DB_NAME } = process.env;
 
+/**
+ * GERA UM BANCO DE DADOS EM MEMÓRIA PARA SERVIR DE "DOUBLE"
+ * @param {*} connectMongo o banco que vai fazer a conexão
+ * @returns uma conexão "mockada"
+ */
+
 const mockMongo = async (connectMongo) => {
   const DBServer = new MongoMemoryServer();
   const URLMock = await DBServer.getUri();

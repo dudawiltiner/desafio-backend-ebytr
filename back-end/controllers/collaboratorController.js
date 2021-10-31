@@ -2,13 +2,19 @@ const status = require('http-status');
 const jwt = require('jsonwebtoken');
 const collaboratorService = require('../services/collaboratorService');
 
-// JWT //
+// CONFIGURAÇÃO DO JWT //
 const secretKey = process.env.SECRET_KEY;
 const jwtConfig = {
   expiresIn: '1d',
   algorithm: 'HS256',
 };
-//    //
+
+/**
+ * CONFIGURAÇÃO DO MIDDLEWARE PARA A AUTENTICAÇÃO DO COLABORADOR 
+ * @param {*} req // recebe a requisição
+ * @param {*} res // resebe a resposta
+ * @returns um status + json (message ou array)
+ */
 
 const getOne = async (req, res) => {
   try {
