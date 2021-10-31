@@ -45,14 +45,16 @@ describe('Encontra um usuário já cadastrado', function () {
 
     sinon.stub(connectMongo, 'connect').resolves(connectionMock);
     
-    const collaboratorMock = await connectionMock.collection('collaborators').insertOne(newCollaborator);
+    const collaboratorMock = await connectionMock
+                                    .collection('collaborators')
+                                    .insertOne(newCollaborator);
     
     payloadCollaboratorId = { 
       id: collaboratorMock.insertedId.toString(),
     };
   });
 
-  /* Restauraremos a função `getConnection` original após os testes. */
+  /* Restauraremos a função `connect` original após os testes. */
   after(function () {
     connectMongo.connect.restore();
   });    
@@ -67,7 +69,8 @@ describe('Encontra um usuário já cadastrado', function () {
     it('o objeto deve conter o email do usuário encontrado', async function () {
       const response = await collaboratorModel.getOne(payloadCollaboratorEmailESenha);
 
-      expect(response.collaboratorEmail).to.be.equal(payloadCollaboratorEmailESenha.collaboratorEmail);
+      expect(response.collaboratorEmail)
+        .to.be.equal(payloadCollaboratorEmailESenha.collaboratorEmail);
     });
   });
 

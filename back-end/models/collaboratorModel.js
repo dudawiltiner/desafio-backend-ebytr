@@ -1,6 +1,7 @@
 const { ObjectId } = require('mongodb');
 const connectMongo = require('./connection');
 
+// READ ONE 
 const getOne = async ({ collaboratorEmail, collaboratorPassword }) => {
   const db = await connectMongo.connect();
   const collaborator = await db.collection('collaborators').findOne(
@@ -13,6 +14,7 @@ const getOne = async ({ collaboratorEmail, collaboratorPassword }) => {
   return collaborator;
 };
 
+// READ ID
 const findId = async ({ id }) => {
   const db = await connectMongo.connect();
   const collaborator = await db.collection('collaborators').findOne(
