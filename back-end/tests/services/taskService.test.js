@@ -2,12 +2,12 @@ const { expect } = require('chai');
 
 /*
 |_Faz o CRUD (Criação, Leitura, Atualização, Exclusão) de uma tarefa 
+  |__quando o payload ou id informado para encontrar o usuário
+     |__retorna um boolean
+     |__o boolean deve ser false
   |__quando criada com sucesso
      |__retorna um objeto
      |__o objeto deve conter um id da tarefa encontrado
-  |__quando todas encontradas com sucesso
-     |__retorna um array
-     |__se tiver pelo menos uma tarefa o tamanho do array de ser diferente de zero
   |__quando atualizada com sucesso
      |__retorna um objeto
      |__o objeto deve um indicativo de atualização
@@ -18,7 +18,7 @@ const { expect } = require('chai');
 
 // Importar o banco que vai fazer a conexão para poder fazer o 'double' com o sinon
 const connectMongo = require('../../models/connection');
-const taskModel = require('../../models/taskModel');
+const taskService = require('../../services/taskService');
 const { mockMongo } = require('../../helper/helperMockMongo');
 
 describe('MODEL: Faz o CRUD (Criação, Leitura, Atualização e Exclusão) de uma tarefa', function () {
@@ -51,14 +51,6 @@ describe('MODEL: Faz o CRUD (Criação, Leitura, Atualização e Exclusão) de u
     statusMock = await connectionMock
                         .collection('status')
                         .insertMany(newStatus);
-    
-    payloadTask = { 
-      collaboratorId: collaboratorMock.insertedId,
-      statusId: statusMock.insertedIds[0],
-      title: 'Título da Tarefa',
-      description: 'Uma breve descrição do que se trata a tarefa',
-      deadlineDate: '11/06/2011',
-    };
   });
 
   /* Restauraremos a função `connect` original após os testes. */
@@ -66,67 +58,110 @@ describe('MODEL: Faz o CRUD (Criação, Leitura, Atualização e Exclusão) de u
     connectMongo.connect.restore();
   });    
 
+  describe('para criar, quando o payload informado não for válido', function () {
+    payloadTask = {};
+
+    it('deve retornar um boolean', async function () {
+      const response = await taskService.create(payloadTask);
+
+      expect(response).to.be.a('boolean');
+    });
+
+    it('este o boolean deve ser false', async function () {
+      const response = await taskService.create(payloadTask);
+
+      expect(response).to.be.equal(false);
+    });
+  });
+  
   describe('quando criada com sucesso', function () {
     it('retorna um objeto', async function () {
-      await taskModel.create(payloadTask); // criar duas tarefas para o teste de delete funcionar
-      const response = await taskModel.create(payloadTask);
+     payloadTask = { 
+        collaboratorId: collaboratorMock.insertedId,
+        statusId: statusMock.insertedIds[0],
+        title: 'Título da Tarefa',
+        description: 'Uma breve descrição do que se trata a tarefa',
+        deadlineDate: '11/06/2011',
+      };
+      await taskService.create(payloadTask); // criar duas tarefas para o teste de delete funcionar
+      const response = await taskService.create(payloadTask);
 
       expect(response).to.be.a('object');
     });
 
     it('o objeto deve conter o id da tarefa criada', async function () {
-      const response = await taskModel.create(payloadTask);
+      const response = await taskService.create(payloadTask);
 
-      expect(response).to.have.a.property('insertedId');
-    });
-  });
-
-  describe('quando todas encontradas com sucesso', function () {
-    it('retorna um array', async function () {
-      const response = await taskModel.getAll();
       payloadTask = {
         // eslint-disable-next-line no-underscore-dangle
-        id: response[0]._id.toString(),
+        id: response.insertedId.toString(),
         collaboratorId: collaboratorMock.insertedId,
         statusId: statusMock.insertedIds[1],
         title: 'Título da Tarefa 2',
         description: 'Uma breve descrição do que se trata a tarefa com mais detalhes',
         deadlineDate: '22/06/2011',
       };
-      expect(response).to.be.a('array');
+
+      expect(response).to.have.a.property('insertedId');
+    });
+  });
+
+  describe('para atualizar, quando o id informado não for válido', function () {
+    const payloadTaskId = {};
+
+    it('retorna um boolean', async function () {
+      const response = await taskService.update(payloadTaskId);
+
+      expect(response).to.be.a('boolean');
     });
 
-    it('criada uma task, o tamanho do array não deve ser igual a zero', async function () {
-      const response = await taskModel.getAll();
-  
-      expect(response.length).not.be.equals(0);
+    it('o boolean deve ser false', async function () {
+      const response = await taskService.update(payloadTaskId);
+
+      expect(response).to.be.equal(false);
     });
   });
 
   describe('quando atualizada com sucesso', function () {
     it('retorna um objeto', async function () {
-      const response = await taskModel.update(payloadTask);
+      const response = await taskService.update(payloadTask);
 
       expect(response).to.be.a('object');
     });
 
     it('o objeto deve conter uma atualização feita, ou seja "matchedCount" maior que zero',
      async function () {
-      const response = await taskModel.update(payloadTask);
+      const response = await taskService.update(payloadTask);
      
       expect(response.matchedCount).not.be.equals(0);
     });
   });
 
+  describe('para excluir, quando o id informado não for válido', function () {
+    const id = '';
+
+    it('retorna um boolean', async function () {
+      const response = await taskService.deleteOne(id);
+
+      expect(response).to.be.a('boolean');
+    });
+
+    it('o boolean deve ser false', async function () {
+      const response = await taskService.deleteOne(id);
+
+      expect(response).to.be.equal(false);
+    });
+  });
+
   describe('quando deletada com sucesso', function () {
     it('deve retornar um objeto', async function () {
-      const response = await taskModel.deleteOne(payloadTask.id);
+      const response = await taskService.deleteOne(payloadTask.id);
 
       expect(response).to.be.a('object');
     });
 
     it('task não encontrada para deletar no objeto "deletedCount" igual 0', async function () {
-      const response = await taskModel.deleteOne(payloadTask.id);
+      const response = await taskService.deleteOne(payloadTask.id);
      
       expect(response.deletedCount).be.equals(0);
     });

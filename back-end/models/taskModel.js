@@ -1,13 +1,6 @@
 const { ObjectId } = require('mongodb');
+const { dateNow } = require('../helper/helperDate');
 const connectMongo = require('./connection');
-
-function dateNow() {
-  const data = new Date();
-      const dia = data.getDate().toString().padStart(2, '0');
-      const mes = (data.getMonth() + 1).toString().padStart(2, '0');
-      const ano = data.getFullYear();
-  return `${dia}/${mes}/${ano}`;
-}
 
 // CREATE ONE 
 const create = async ({ 
@@ -78,8 +71,7 @@ const update = async ({
 const deleteOne = async ({ id }) => {
 const db = await connectMongo.connect();
 
-const task = await db.collection('tasks')
-.deleteOne({ _id: ObjectId(id) });
+const task = await db.collection('tasks').deleteOne({ _id: ObjectId(id) });
 
 return task;
 };

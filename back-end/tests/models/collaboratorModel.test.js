@@ -1,8 +1,5 @@
 const { expect } = require('chai');
-require('dotenv').config();
-const sinon = require('sinon');
-const { MongoClient } = require('mongodb');
-const { MongoMemoryServer } = require('mongodb-memory-server');
+
 /*
 |_Encontra um usuário já cadastrado
   |__quando encontrado com sucesso
@@ -12,12 +9,11 @@ const { MongoMemoryServer } = require('mongodb-memory-server');
 
 // Importar o banco que vai fazer a conexão para poder fazer o 'double' com o sinon
 const connectMongo = require('../../models/connection');
+
 const collaboratorModel = require('../../models/collaboratorModel');
-const { mockMongo } = require('../../helperMockMongo');
+const { mockMongo } = require('../../helper/helperMockMongo');
 
-const { DB_NAME } = process.env;
-
-describe('Encontra um usuário já cadastrado', function () {
+describe('MODEL: Encontra um usuário já cadastrado', function () {
   let connectionMock;
   const payloadCollaboratorEmailESenha = { 
     collaboratorEmail: 'nome@nome.com',
@@ -25,14 +21,9 @@ describe('Encontra um usuário já cadastrado', function () {
   };
   let payloadCollaboratorId;
 
-  /* Usa-se o banco montado pela lib `mongo-memory-server` - plataforma trybe */
   before(async function () {
-    connectionMock = await mockMongo({ 
-      sinon, 
-      MongoMemoryServer, 
-      MongoClient, 
-      DB_NAME, 
-      connectMongo }); 
+    /* Usa-se o banco montado pela lib `mongo-memory-server` - plataforma trybe */
+    connectionMock = await mockMongo(connectMongo); 
 
     const newCollaborator = {
       collaboratorEmail: 'nome@nome.com',
@@ -41,8 +32,6 @@ describe('Encontra um usuário já cadastrado', function () {
       createdDate: '21/9/2021',
     };
 
-    sinon.stub(connectMongo, 'connect').resolves(connectionMock);
-    
     const collaboratorMock = await connectionMock
                                     .collection('collaborators')
                                     .insertOne(newCollaborator);

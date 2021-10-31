@@ -1,4 +1,11 @@
-const mockMongo = async ({ sinon, MongoMemoryServer, MongoClient, DB_NAME, connectMongo }) => {
+require('dotenv').config();
+const sinon = require('sinon');
+const { MongoClient } = require('mongodb');
+const { MongoMemoryServer } = require('mongodb-memory-server');
+
+const { DB_NAME } = process.env;
+
+const mockMongo = async (connectMongo) => {
   const DBServer = new MongoMemoryServer();
   const URLMock = await DBServer.getUri();
   
