@@ -1,9 +1,12 @@
+/* eslint-disable max-lines */
 const sinon = require('sinon');
 const { expect } = require('chai');
 // const { ObjectId } = require('mongodb');
 
 const taskService = require('../../services/taskService');
 const taskController = require('../../controllers/taskController');
+const { mockMongo } = require('../../helper/helperMockMongo');
+const connectMongo = require('../../models/connection');
 
 /*
 |_Ao chamar o controller de Satus 
@@ -28,7 +31,7 @@ const taskController = require('../../controllers/taskController');
 */
 
 describe('CONTROLLER: Ao chamar o controller de Task', function () {
-  // const id = '';
+  let taskId = {};
 
   describe('quando o payload informado não é válido', function () {
     const response = {};
@@ -140,17 +143,28 @@ describe('CONTROLLER: Ao chamar o controller de Task', function () {
   describe('quando é atualizada com sucesso', function () {
     const response = {};
     const request = {};
+    let connectionMock;
 
-    before(function () {
-      request.body = {
-        id: '5bf142459b72e12b2b1b2cd',
+    before(async function () {
+      connectionMock = await mockMongo(connectMongo); 
+
+      const newTask = {
         collaboratorId: '5bf142459b72e12b2b1b2cd',
         statusId: '5bf142457b78e12u2b1b2pl',
         title: 'Título da Tarefa 2',
         description: 'Uma breve descrição do que se trata a tarefa 2',
         deadlineDate: '11/06/2011',
       };
-
+  
+      const taskMock = await connectionMock.collection('tasks').insertOne(newTask);
+      
+      taskId = { 
+        id: taskMock.insertedId.toString(),
+      };
+      
+      request.body = newTask;
+      request.body.id = taskId.id;
+    
       response.status = sinon.stub()
         .returns(response);
       response.json = sinon.stub()
@@ -162,6 +176,7 @@ describe('CONTROLLER: Ao chamar o controller de Task', function () {
     /* Restaura-se a função `update` original após os testes. */
     after(function () {
       taskService.update.restore();
+      connectMongo.connect.restore();
     });
 
     it('é chamado o status com o código 200', async function () {
@@ -183,7 +198,7 @@ describe('CONTROLLER: Ao chamar o controller de Task', function () {
     const request = {};
 
     before(function () {
-      request.body = {};
+      request.params = {};
 
       response.status = sinon.stub()
         .returns(response);
@@ -217,9 +232,7 @@ describe('CONTROLLER: Ao chamar o controller de Task', function () {
     const request = {};
 
     before(function () {
-      request.params = {
-        id: '5bf142459b72e12b2b1b2cd',
-      };
+      request.params = taskId;
 
       response.status = sinon.stub()
         .returns(response);

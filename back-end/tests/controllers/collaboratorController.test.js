@@ -80,7 +80,7 @@ describe('Ao chamar o controller de Collaborator', function () {
 
     it('é chamado o json que armazena um token gerado e nome do colaborador', async function () {
       await collaboratorController.getOne(request, response);
-      console.log(response);
+    
       expect(response.json.calledWith()).to.be.equal(true);
     });
   });

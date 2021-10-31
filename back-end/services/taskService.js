@@ -60,7 +60,8 @@ const update = async ({
   title, 
   description,  
   deadlineDate }) => {
-  if (!ObjectId.isValid(id)) { 
+    console.log(id);
+  if (!ObjectId.isValid(id)) {
     return false;
   }
   const task = await taskModel.update({ 
@@ -75,6 +76,7 @@ const update = async ({
   };
 
 const deleteOne = async (id) => {
+  console.log(id);
   if (!ObjectId.isValid(id)) { 
     return false;
   }

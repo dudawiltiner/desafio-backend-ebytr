@@ -17,13 +17,19 @@ describe('CONTROLLER: Ao chamar o controller de Status', function () {
     const response = {};
     const request = {};
 
+    const status = [
+      { id: '604cb554311d68f491ba5791', statusName: 'Pronto' },
+      { id: '904cb554311d68f491ba5781', statusName: 'Pendente' },
+      { id: '703cb554311d68f491ba5661', statusName: 'Andamento' },
+    ];
+
     before(function () {
       response.status = sinon.stub()
         .returns(response);
       response.json = sinon.stub()
         .returns();
      
-      sinon.stub(statusModel, 'getAll').resolves(true);
+      sinon.stub(statusModel, 'getAll').resolves(status);
     });
 
     /* Restaura-se a função `getAll` original após os testes. */
@@ -37,10 +43,10 @@ describe('CONTROLLER: Ao chamar o controller de Status', function () {
       expect(response.status.calledWith(200)).to.be.equal(true);
     });
 
-    it('é chamado um json com o array com todos os status', async function () {
+    it('é chamado um json que deve conter um array com todos os status', async function () {
       await statusController.getAll(request, response);
       
-      expect(response.json.calledWith()).to.be.equal(true);
+      expect(response.json.calledWith(sinon.match.array)).to.be.equal(true);
     });
   });
 });

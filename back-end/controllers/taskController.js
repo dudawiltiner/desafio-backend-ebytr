@@ -1,5 +1,6 @@
 const status = require('http-status');
 const taskService = require('../services/taskService');
+const taskModel = require('../models/taskModel');
 
 const create = async (req, res) => {
   try {
@@ -23,7 +24,7 @@ const update = async (req, res) => {
   try {
     const { id, collaboratorId, statusId, title, description, deadlineDate } = req.body;
 
-    const task = await taskService.create({ 
+    const task = await taskService.update({ 
       id, collaboratorId, statusId, title, description, deadlineDate });
     
     if (task) {
@@ -40,7 +41,7 @@ const deleteOne = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const task = await taskService.deleteOne({ id });
+    const task = await taskService.deleteOne(id);
     
     if (task) {
       return res.status(status.OK).json({ message: 'Tarefa excluída com sucesso' });
@@ -52,4 +53,15 @@ const deleteOne = async (req, res) => {
   }
 };
 
-module.exports = { create, update, deleteOne };
+const getAll = async (_req, res) => {
+  try {
+    const tasks = await taskModel.getAll();
+    
+    return res.status(status.OK).json(tasks);
+  } catch (error) {
+    return res.status(status.INTERNAL_SERVER_ERROR).json({ 
+      message: 'Alguma coisa errada aconteceu' });
+  }
+};
+
+module.exports = { create, update, deleteOne, getAll };
