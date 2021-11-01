@@ -5,7 +5,7 @@ const tokenController = require('../controllers/tokenController');
 const router = express.Router();
 
 // AUTENTICAÇÃO
-router.post('/', tokenController.isValid, collaboratorController.getOne);
+router.post('/', collaboratorController.getOne);
 
 // GET ALL
 router.get('/', tokenController.isValid, collaboratorController.getAll);
