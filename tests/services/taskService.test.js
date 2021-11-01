@@ -21,7 +21,7 @@ const connectMongo = require('../../models/connection');
 const taskService = require('../../services/taskService');
 const { mockMongo } = require('../../helper/helperMockMongo');
 
-describe('MODEL: Faz o CRUD (Criação, Leitura, Atualização e Exclusão) de uma tarefa', function () {
+describe('SERVICE: Faz o CRUD de uma tarefa', function () {
   let connectionMock;
   let collaboratorMock;
   let statusMock;
@@ -141,13 +141,13 @@ describe('MODEL: Faz o CRUD (Criação, Leitura, Atualização e Exclusão) de u
     const id = '';
 
     it('retorna um boolean', async function () {
-      const response = await taskService.deleteOne(id);
+      const response = await taskService.deleteOne({ id });
 
       expect(response).to.be.a('boolean');
     });
 
     it('o boolean deve ser false', async function () {
-      const response = await taskService.deleteOne(id);
+      const response = await taskService.deleteOne({ id });
 
       expect(response).to.be.equal(false);
     });
@@ -155,13 +155,13 @@ describe('MODEL: Faz o CRUD (Criação, Leitura, Atualização e Exclusão) de u
 
   describe('quando deletada com sucesso', function () {
     it('deve retornar um objeto', async function () {
-      const response = await taskService.deleteOne(payloadTask.id);
+      const response = await taskService.deleteOne({ id: payloadTask.id });
 
       expect(response).to.be.a('object');
     });
 
     it('task não encontrada para deletar no objeto "deletedCount" igual 0', async function () {
-      const response = await taskService.deleteOne(payloadTask.id);
+      const response = await taskService.deleteOne({ id: payloadTask.id });
      
       expect(response.deletedCount).be.equals(0);
     });

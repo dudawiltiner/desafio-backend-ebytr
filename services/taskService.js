@@ -1,6 +1,6 @@
 const { ObjectId } = require('mongodb');
 const taskModel = require('../models/taskModel');
-const { isValidDate, isValidTask, isValidId } = require('../helper/validCollaborator');
+const { isValidDate, isValidTask, isValidId } = require('../helper/validTask');
 
 /**
  * CRIA UMA NOVA TAREFA PELO MODEL
@@ -64,13 +64,12 @@ const update = async ({
  * @returns um OBJETO do model Task ou BOOLEAN false  
  */
 
-const deleteOne = async (id) => {
-  console.log(id);
+const deleteOne = async ({ id }) => {
   if (!ObjectId.isValid(id)) { 
     return false;
   }
 
-  const res = await taskModel.deleteOne(id);
+  const res = await taskModel.deleteOne({ id });
   
   return res;
   };

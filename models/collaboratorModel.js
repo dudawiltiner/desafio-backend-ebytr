@@ -9,7 +9,9 @@ const connectMongo = require('./connection');
 
 // READ ONE 
 const getOne = async ({ collaboratorEmail, collaboratorPassword }) => {
-  const db = await connectMongo.getDb();
+  let db = await connectMongo.getDb();
+
+  if (db === null) db = await connectMongo.connect();
   const collaborator = await db.collection('collaborators').findOne(
     { 
       collaboratorEmail, 
@@ -28,7 +30,9 @@ const getOne = async ({ collaboratorEmail, collaboratorPassword }) => {
 
 // READ ID
 const findId = async ({ id }) => {
-  const db = await connectMongo.getDb();
+  let db = await connectMongo.getDb();
+
+  if (db === null) db = await connectMongo.connect();
   const collaborator = await db.collection('collaborators').findOne(
     { 
       _id: ObjectId(id), 

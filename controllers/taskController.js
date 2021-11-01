@@ -48,7 +48,7 @@ const deleteOne = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const task = await taskService.deleteOne(id);
+    const task = await taskService.deleteOne({ id });
     
     if (task) {
       return res.status(status.OK).json({ message: 'Tarefa excluída com sucesso' });
