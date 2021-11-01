@@ -1,6 +1,7 @@
 const status = require('http-status');
 const jwt = require('jsonwebtoken');
 const collaboratorService = require('../services/collaboratorService');
+const collaboratorModel = require('../models/collaboratorModel');
 
 // CONFIGURAÇÃO DO JWT //
 const secretKey = process.env.SECRET_KEY;
@@ -40,4 +41,10 @@ const getOne = async (req, res) => {
   }
 };
 
-module.exports = { getOne };
+const getAll = async (_req, res) => {
+  const collaboratorList = await collaboratorModel.getAll();
+
+  return res.status(status.OK).json(collaboratorList);
+};
+
+module.exports = { getOne, getAll };
