@@ -3,9 +3,9 @@
 
 ## Introdução
 
-Essa é parte do desafio técnico da Ebytr reservada para o desenvolvimento do back-end que foi feita para atender a arquitetura da stack [MERN](https://www.mongodb.com/mern-stack) como requisitado. Neste trabalho foram usados conhecimentos sobre modelagem de banco de dados e formas normais para se criar um banco de dados NoSQL sem duplcidade, com melhor manutenabilidade, menor probabilidade de erros e de conflitos. 
+Essa é parte do desafio técnico da Ebytr reservada para o desenvolvimento do **back-end** que foi feita para atender a arquitetura da stack [MERN](https://www.mongodb.com/mern-stack) como requisitado. Neste trabalho foram usados conhecimentos sobre **modelagem de banco de dados** e **formas normais** para se criar um banco de dados **NoSQL** sem duplcidade, com melhor manutenabilidade, menor probabilidade de erros e de conflitos. 
 
-Foi usado a arquitetura de software MSC (Model, Service e Controller) para organizar o código de desenvolvimento da API, em que cada uma dessas partes técnicas foram testadas com testes unitários, e padrões REST para manter a qualidade e funcionamento da mesma. A API possui uma rota para autenticação do usuário (/collaborator), já que se trata de uma plataforma de uma empresa onde apenas os colaboradores precisam visualizar a lista de tarefas, possui, também, quatro rotas CRUD (Create, Read, Update e Delete) das tarefas a serem realizadas (/task) e por fim, uma única rota para adquirir todos os status disponíveis.
+Foi usado a arquitetura de software **MSC** (Model, Service e Controller) para organizar o código de desenvolvimento da **API**, em que cada uma dessas partes técnicas foram testadas com **testes unitários**, e padrões **REST** para manter a qualidade e funcionamento da mesma. A **API** possui uma rota para autenticação do usuário (/collaborator), já que se trata de uma plataforma de uma empresa onde apenas os colaboradores precisam visualizar a lista de tarefas, possui, também, quatro rotas **CRUD** (Create, Read, Update e Delete) das tarefas a serem realizadas (/task) e por fim, uma única rota para adquirir todos os status disponíveis.
 
 As ferramentas principais utilizadas foran:
 
