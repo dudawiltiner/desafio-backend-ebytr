@@ -17,7 +17,7 @@ As ferramentas principais utilizadas são:
 
 ## Uso do projeto localmente
 
-# Clone do repositório
+### Clone do repositório
 
 Após cada um dos passos a seguir, haverá um exemplo do comando a ser digitado para fazer o que está sendo pedido, caso tenha dificuldades e o exemplo não seja suficiente, não hesite em me contatar em _eduardawiltiner@gmail.com_.
 
@@ -32,7 +32,7 @@ Após cada um dos passos a seguir, haverá um exemplo do comando a ser digitado 
   git clone git@github.com:johnatas-henrique/meme-generator.git
 ```
 
-# Instalação das dependências
+### Instalação das dependências
 
 3. Entre no diretório criado após a clonagem do repositório.
 ```javascript
@@ -43,7 +43,7 @@ Após cada um dos passos a seguir, haverá um exemplo do comando a ser digitado 
 ```javascript
   npm install
 ```
-# Debug da aplicação
+### Debug da aplicação
 
 5. Abra no ambiente de desenvolvimento de sua preferência.
 ```javascript
@@ -55,7 +55,7 @@ Após cada um dos passos a seguir, haverá um exemplo do comando a ser digitado 
   npm run debug
 ```
 
-# Realizar testes na aplicação
+### Realizar testes na aplicação
 
 5. Rode o teste da aplicação com o node.js.
 ```javascript
