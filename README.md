@@ -73,7 +73,8 @@ ou se preferir rodar por arquivo de teste:
 https://desafio-backend-ebytr.herokuapp.com/
 ```javascript
 |_Para endpoints digite também:
-|__/task
-|__/collaborator
-|__/status
+|__/task (GET, POST, PUT, DELETE)
+|__/collaborator (POST, GET)
+|__/status (GET)
 ```
+Lembrando que todos os endpoints menos o de autenticação precisam de autorização ou seja validação do token JWT.
