@@ -69,8 +69,9 @@ ou se preferir rodar por arquivo de teste:
 ```
 ## Link para o deploy da API:
 https://desafio-backend-ebytr.herokuapp.com/
-
+```javascript
 |_Para endpoints digite também:
 |__/task
 |__/collaborator
 |__/status
+```
