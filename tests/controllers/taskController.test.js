@@ -99,10 +99,10 @@ describe('CONTROLLER: Ao chamar o controller de Task', function () {
       expect(response.status.calledWith(201)).to.be.equal(true);
     });
 
-    it('é chamado o json que possue a mensagem "Tarefa salva com sucesso"', async function () {
+    it('é chamado o json que possue o Id da task', async function () {
       await taskController.create(request, response);
      
-      expect(response.json.calledWith({ message: 'Tarefa salva com sucesso' })).to.be.equal(true);
+      expect(response.json.calledWith()).to.be.equal(true);
     });
   });
 

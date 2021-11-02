@@ -17,7 +17,7 @@ const create = async (req, res) => {
       collaboratorId, statusId, title, description, deadlineDate });
     
     if (task) {
-      return res.status(status.CREATED).json({ message: 'Tarefa salva com sucesso' });
+      return res.status(status.CREATED).json({ id: task.insertedId });
     }
   
     return res.status(status.BAD_REQUEST).json({ message: 'Dados inválidos' });
