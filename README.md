@@ -3,7 +3,7 @@
 
 ## Introdução
 
-A parte do desafio técnico da Ebytr reservada para o desenvolvimento do back-end foi feita para atender a arquitetura da stack [MERN](https://www.mongodb.com/mern-stack). Nesse trablho foram usados conhecimentos sobre modelagem de banco de dados e formas normais para se criar um banco de dados NoSQL sem duplcidade, com melhor manutenabilidade, menor probabilidade erros e conflitos. Foi usado a arquitetura de software MSC (Model, Service e Controller) para organizar o código de desenvolvimento da API e padrões REST para manter a qualidade e funcionamento da API.
+Essa é parte do desafio técnico da Ebytr reservada para o desenvolvimento do back-end foi feita para atender a arquitetura da stack [MERN](https://www.mongodb.com/mern-stack). Nesse trablho foram usados conhecimentos sobre modelagem de banco de dados e formas normais para se criar um banco de dados NoSQL sem duplcidade, com melhor manutenabilidade, menor probabilidade erros e conflitos. Foi usado a arquitetura de software MSC (Model, Service e Controller) para organizar o código de desenvolvimento da API e padrões REST para manter a qualidade e funcionamento da API.
 
 As ferramentas principais utilizadas são:
 
