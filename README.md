@@ -77,4 +77,4 @@ https://desafio-backend-ebytr.herokuapp.com/
 |__/collaborator (POST, GET)
 |__/status (GET)
 ```
-Lembrando que todos os endpoints menos o de autenticação precisam de autorização ou seja validação do token JWT.
+OBS:Lembrando que todos os endpoints menos o de autenticação precisam de autorização ou seja validação do **token JWT**.
