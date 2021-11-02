@@ -3,15 +3,16 @@
 
 ## Introdução
 
-A parte do desafio técnico da Ebytr reservada para o desenvolvimento do back-end foi feita para atender a arquitetura da stack [MERN](http://www.extentofthejam.com/pseudo/) 
+A parte do desafio técnico da Ebytr reservada para o desenvolvimento do back-end foi feita para atender a arquitetura da stack [MERN](https://www.mongodb.com/mern-stack). Nesse trablho foram usados conhecimentos sobre modelagem de banco de dados e formas normais para se criar um banco de dados NoSQL sem duplcidade, com melhor manutenabilidade, menor probabilidade erros e conflitos. Foi usado a arquitetura de software MSC (Model, Service e Controller) para organizar o código de desenvolvimento da API e padrões REST para manter a qualidade e funcionamento da API.
 
 As ferramentas principais utilizadas são:
 
-[Extent of the Jam](http://www.extentofthejam.com/pseudo/)<br>
-[Gablaxian](https://gablaxian.com/articles/creating-a-game-with-javascript/introduction/)<br>
-[CodeIncomplete](https://codeincomplete.com/articles/javascript-racer/)<br>
-[YT - Franks Laboratory](https://www.youtube.com/playlist?list=PLYElE_rzEw_v8TXJ_ITSSBP_ypUKfQ7K-)<br>
-[YT - Vagner Araujo](https://www.youtube.com/playlist?list=PLA-J0ex1D9S32RlZhBsiurbNCYm6IG0dO)<br>
+[Express](https://expressjs.com/)<br>
+[Atlas](https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwinwMrL6frzAhXI7bMKHV82BzIYABAAGgJxbg&ae=2&ohost=www.google.com&cid=CAESQeD2sGi_xD8RTWY4JDlyEJwly51DfQNS88frVRtON4AOxDy5gG4e3pAes_vtTP4fim4bQab-qWK4PcZH72cumnHe&sig=AOD64_1IEHAdpgrztk-7RzXLMB1kZd8jwQ&q&adurl&ved=2ahUKEwjzirzL6frzAhVBlJUCHezrCmwQ0Qx6BAgDEAE)<br>
+[MongoDB](https://www.mongodb.com/)<br>
+[Node.js](https://nodejs.org/)<br>
+[Postman](https://www.postman.com/)<br>
+[Heroku](https://www.heroku.com/)<br>
 
 ---
 
@@ -68,3 +69,8 @@ ou se preferir rodar por arquivo de teste:
 ```
 ## Link para o deploy da API:
 https://desafio-backend-ebytr.herokuapp.com/
+
+|_Para endpoints digite também:
+|__/task
+|__/collaborator
+|__/status
