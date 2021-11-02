@@ -7,7 +7,7 @@ Essa é parte do desafio técnico da Ebytr reservada para o desenvolvimento do b
 
 Foi usado a arquitetura de software MSC (Model, Service e Controller) para organizar o código de desenvolvimento da API, em que cada uma dessas partes técnicas foram testadas com testes unitários, e padrões REST para manter a qualidade e funcionamento da mesma. A API possui uma rota para autenticação do usuário (/collaborator), já que se trata de uma plataforma de uma empresa onde apenas os colaboradores precisam visualizar a lista de tarefas, possui, também, quatro rotas CRUD (Create, Read, Update e Delete) das tarefas a serem realizadas (/task) e por fim, uma única rota para adquirir todos os status disponíveis.
 
-As ferramentas principais utilizadas são:
+As ferramentas principais utilizadas foran:
 
 [Express](https://expressjs.com/)<br>
 [Atlas](https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwinwMrL6frzAhXI7bMKHV82BzIYABAAGgJxbg&ae=2&ohost=www.google.com&cid=CAESQeD2sGi_xD8RTWY4JDlyEJwly51DfQNS88frVRtON4AOxDy5gG4e3pAes_vtTP4fim4bQab-qWK4PcZH72cumnHe&sig=AOD64_1IEHAdpgrztk-7RzXLMB1kZd8jwQ&q&adurl&ved=2ahUKEwjzirzL6frzAhVBlJUCHezrCmwQ0Qx6BAgDEAE)<br>
