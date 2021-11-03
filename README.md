@@ -15,6 +15,7 @@ As ferramentas principais utilizadas foran:
 [Node.js](https://nodejs.org/)<br>
 [Postman](https://www.postman.com/)<br>
 [Heroku](https://www.heroku.com/)<br>
+[ESLint](https://eslint.org/)<br>
 
 ---
 
