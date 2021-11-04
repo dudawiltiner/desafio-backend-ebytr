@@ -38,12 +38,12 @@ Após cada um dos passos a seguir, haverá um exemplo do comando a ser digitado 
 
 ### Instalação das dependências
 
-3. Entre no diretório criado após a clonagem do repositório.
+3. Entre no diretório criado após a clonagem do repositório. No caso de uso do VSC, digite o comando **code .** na raiz do diretório clonado.
 ```javascript
   cd desafio-backend-ebytr
 ```
 
-4. Installe todas as dependências.
+4. Installe todas as dependências, usando o CLI **npm**.
 ```javascript
   npm install
 ```
@@ -54,18 +54,18 @@ Após cada um dos passos a seguir, haverá um exemplo do comando a ser digitado 
   code .
 ```
 
-4. Rode a aplicação com o node.js.
+4. Rode a aplicação com o node.js, usando o CLI **npm**.
 ```javascript
   npm run debug
 ```
 
 ### Realizar testes na aplicação
 
-5. Rode o teste da aplicação com o node.js.
+5. Rode o teste da aplicação com o node.js, usando o CLI **npm**.
 ```javascript
   npm test
 ```
-ou se preferir rodar por arquivo de teste:
+Ou se preferir rodar um único arquivo de teste:
 
 ```javascript
   NAME=<arquivodeteste> npm test
